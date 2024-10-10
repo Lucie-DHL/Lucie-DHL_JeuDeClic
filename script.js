@@ -2,8 +2,8 @@ let score = 0;
 let timeLeft = 5;
 let timerId;
 let maxTime = 5;
-let x = Math.random() * (window.innerWidth - 50);
-let y = Math.random() * (window.innerHeight - 50);
+let x = (window.innerWidth / 2 - 25);
+let y = (window.innerHeight / 2 - 25);
 
 const target = document.getElementById('target');
 const greenTarget = document.getElementById('green-target')
@@ -23,6 +23,8 @@ function startGame() {
     moveTarget();
     timerId = setInterval(countDown, 100);
     startButton.style.display = 'none';
+    target.style.display = 'block';
+    greenTarget.style.display = 'block';
 }
 
 function moveTarget() {
@@ -54,6 +56,12 @@ function countDown() {
         clearInterval(timerId);
         alert(`Temps écoulé ! Votre score est : ${score}`);
         startButton.style.display = 'block';
+        target.style.display = 'none';
+        greenTarget.style.display = 'none';
+        x = window.innerWidth / 2 - 25;
+        y = window.innerHeight / 2 - 25;
+        greenTarget.style.left = `${x}px`;
+        greenTarget.style.top = `${y}px`;
     }
 }
 
