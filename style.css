@@ -14,6 +14,7 @@ body {
 }
 
 #target {
+    z-index: 1;
     width: 50px;
     height: 50px;
     background-color: red;
@@ -63,7 +64,7 @@ body {
 
 #start-button {
     position: absolute;
-    z-index: 1;
+    z-index: 2;
     padding: 20px;
     border-radius: 20px;
     font-size: large;
