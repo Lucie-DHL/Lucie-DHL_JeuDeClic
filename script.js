@@ -2,8 +2,11 @@ let score = 0;
 let timeLeft = 5;
 let timerId;
 let maxTime = 5;
+let x = Math.random() * (window.innerWidth - 50);
+let y = Math.random() * (window.innerHeight - 50);
 
 const target = document.getElementById('target');
+const greenTarget = document.getElementById('green-target')
 const timerDisplay = document.getElementById('timer');
 const scoreDisplay = document.getElementById('score');
 const progress = document.getElementById('progress');
@@ -23,10 +26,12 @@ function startGame() {
 }
 
 function moveTarget() {
-    const x = Math.random() * (window.innerWidth - 50);
-    const y = Math.random() * (window.innerHeight - 50);
     target.style.left = `${x}px`;
     target.style.top = `${y}px`;
+    x = Math.random() * (window.innerWidth - 50);
+    y = Math.random() * (window.innerHeight - 50);
+    greenTarget.style.left = `${x}px`;
+    greenTarget.style.top = `${y}px`;
 }
 
 target.addEventListener('click', () => {
