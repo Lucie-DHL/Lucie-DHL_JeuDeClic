@@ -5,21 +5,24 @@ let maxTime = 5;
 let x = (window.innerWidth / 2 - 25);
 let y = (window.innerHeight / 2 - 25);
 
+let mScore = localStorage.getItem("mScore");
+if (mScore == null) {
+    mScore = 0;
+}
+
 const target = document.getElementById('target');
 const greenTarget = document.getElementById('green-target')
 const timerDisplay = document.getElementById('timer');
 const scoreDisplay = document.getElementById('score');
+const mScoreDisplay = document.getElementById('mScore');
 const progress = document.getElementById('progress');
 const startButton = document.getElementById('start-button');
+
+mScoreDisplay.textContent = `Meilleur Score : ${mScore}`;
 
 startButton.addEventListener('click', startGame);
 
 function startGame() {
-    score = 0;
-    maxTime = 5
-    timeLeft = maxTime;
-    updateDisplay();
-    updateProgressBar();
     moveTarget();
     timerId = setInterval(countDown, 100);
     startButton.style.display = 'none';
@@ -54,7 +57,12 @@ function countDown() {
     updateProgressBar();
     if (timeLeft <= 0) {
         clearInterval(timerId);
+        if (score > mScore){
+            mScore = score;
+            localStorage.setItem("mScore", mScore);
+        }
         alert(`Temps écoulé ! Votre score est : ${score}`);
+        mScoreDisplay.textContent = `Meilleur Score : ${mScore}`;
         startButton.style.display = 'block';
         target.style.display = 'none';
         greenTarget.style.display = 'none';
@@ -62,6 +70,11 @@ function countDown() {
         y = window.innerHeight / 2 - 25;
         greenTarget.style.left = `${x}px`;
         greenTarget.style.top = `${y}px`;
+        score = 0;
+        maxTime = 5
+        timeLeft = maxTime;
+        updateDisplay();
+        updateProgressBar();
     }
 }
 
